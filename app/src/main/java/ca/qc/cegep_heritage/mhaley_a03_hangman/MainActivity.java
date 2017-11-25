@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_options) {
             Intent optionsIntent = new Intent(this, OptionsActivity.class);
             startActivity(optionsIntent);
-            return true;
         }
 
 
         if (id == R.id.action_about) {
-            return false;
+            Intent aboutIntent = null;
+            startActivity(aboutIntent);
         }
 
         return super.onOptionsItemSelected(item);
