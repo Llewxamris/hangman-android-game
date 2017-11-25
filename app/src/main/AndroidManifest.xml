@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OptionsActivity"></activity>
+        <activity
+            android:name=".OptionsActivity"
+            android:label="@string/options_title"
+            android:configChanges="orientation|keyboardHidden"/>
     </application>
 
 </manifest>

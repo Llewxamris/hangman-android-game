@@ -9,6 +9,7 @@
     <string name="title_activity_options">Options</string>
 
     <!-- Options Menu -->
+    <string name="options_title">Options</string>
     <string name="label_difficulty">Difficulty:</string>
     <string name="radio_button_easy">Easy</string>
     <string name="radio_button_hard">Hard</string>
