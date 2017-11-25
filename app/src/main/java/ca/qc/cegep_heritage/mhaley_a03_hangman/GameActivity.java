@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.TableLayout;
+import android.widget.TextView;
 
-import java.util.LinkedList;
+import org.w3c.dom.Text;
+
+import java.io.IOException;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -19,7 +20,17 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        try {
+            String[] arrayString = WordLists.getEasyList();
+            TextView txtWord = findViewById(R.id.txtTheWord);
+            txtWord.setText(arrayString[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         edtxtGuess = findViewById(R.id.edtxtGuess);
+
+
  }
 
     public void checkLetter(View v) {
