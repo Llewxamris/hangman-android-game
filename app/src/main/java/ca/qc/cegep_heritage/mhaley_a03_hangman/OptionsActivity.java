@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ public class OptionsActivity extends AppCompatActivity {
     private EditText edtxtMaxLength;
     private RadioGroup rdoGrpDifficulty;
     private Intent mainIntent;
+    private static final int MIN_WORD_LENGTH = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +36,40 @@ public class OptionsActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Validate Min and Max Length values before saving.
-                // Min should be: 3 >= Min >= Max
-                // Max should be: 3 >= Max && Min > Max
+                AlertDialog.Builder warningBuilder = new AlertDialog.Builder(OptionsActivity.this);
+                warningBuilder.setTitle("Error");
 
-                Snackbar saveSnackbar = Snackbar
-                        .make(findViewById(R.id.layOptions),"Options Saved", Snackbar.LENGTH_LONG);
-                saveSnackbar.show();
-                setSharedPreferences();
+                if (edtxtMinLength.getText().toString().equals(""))
+                {
+                    warningBuilder.setMessage("Please enter a minimum length.");
+                    warningBuilder.show();
+                    return;
+                }
+
+
+                if (edtxtMaxLength.getText().toString().equals(""))
+                {
+                    warningBuilder.setMessage("Please enter a maximum length.");
+                    warningBuilder.show();
+
+                    return;
+                }
+
+                int minLength = Integer.parseInt(edtxtMinLength.getText().toString());
+                int maxLength = Integer.parseInt(edtxtMaxLength.getText().toString());
+
+                if (minLength < MIN_WORD_LENGTH) {
+                    warningBuilder.setMessage("Minimum word length must be 3, or greater.");
+                    warningBuilder.show();
+                } else if (maxLength < minLength ) {
+                    warningBuilder.setMessage("Maximum word length must be greater than or equal to minimum word length.");
+                    warningBuilder.show();
+                } else {
+                    Snackbar saveSnackbar = Snackbar
+                            .make(findViewById(R.id.layOptions), "Options Saved", Snackbar.LENGTH_LONG);
+                    saveSnackbar.show();
+                    setSharedPreferences();
+                }
             }
         });
 
@@ -89,5 +117,4 @@ public class OptionsActivity extends AppCompatActivity {
         editSharedPrefs.putInt("difficulty", rdoGrpDifficulty.getCheckedRadioButtonId());
         editSharedPrefs.apply();
     }
-
 }
