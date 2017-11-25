@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +30,14 @@ public class MainActivity extends AppCompatActivity {
             editSharedPrefs.apply();
         }
 
-
-
+        Button btnPlay = findViewById(R.id.btnPlay);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
+                startActivity(gameIntent);
+            }
+        });
     }
 
     @Override

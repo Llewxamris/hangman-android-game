@@ -11,12 +11,12 @@
         android:id="@+id/txtTheWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="356dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginTop="24dp"
         android:text="_ _ _ _ _ _ _"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Display2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -24,21 +24,21 @@
         style="@android:style/Widget.Material.EditText"
         android:layout_width="31dp"
         android:layout_height="51dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="text|textCapCharacters"
         android:maxLength="1"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTheWord" />
 
     <Button
         android:id="@+id/btnGuess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="Guess"
         app:layout_constraintStart_toEndOf="@+id/edtxtGuess"
         app:layout_constraintTop_toBottomOf="@+id/txtTheWord" />
@@ -59,6 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="192dp"
         android:background="@drawable/hangman_body"
+        android:scaleX="@dimen/game_land_hangman_scale"
+        android:scaleY="@dimen/game_land_hangman_scale"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawHead" />
 
@@ -67,6 +69,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/hangman_left_limb"
+        android:scaleX="@dimen/game_land_hangman_scale"
+        android:scaleY="@dimen/game_land_hangman_scale"
         app:layout_constraintEnd_toStartOf="@+id/drawBody"
         app:layout_constraintTop_toBottomOf="@+id/drawHead" />
 
@@ -76,6 +80,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
         android:background="@drawable/hangman_left_limb"
+        android:scaleX="@dimen/game_land_hangman_scale"
+        android:scaleY="@dimen/game_land_hangman_scale"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawBody" />
 
@@ -84,6 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/hangman_right_limb"
+        android:scaleX="@dimen/game_land_hangman_scale"
+        android:scaleY="@dimen/game_land_hangman_scale"
         app:layout_constraintStart_toEndOf="@+id/drawBody"
         app:layout_constraintTop_toBottomOf="@+id/drawHead" />
 
@@ -91,8 +99,10 @@
         android:id="@+id/drawRightLeg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="172dp"
+        android:layout_marginEnd="448dp"
         android:background="@drawable/hangman_right_limb"
+        android:scaleX="@dimen/game_land_hangman_scale"
+        android:scaleY="@dimen/game_land_hangman_scale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawBody" />
 
@@ -101,8 +111,7 @@
         android:layout_width="204dp"
         android:layout_height="334dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/hangman_gallow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
