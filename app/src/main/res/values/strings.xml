@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">MHaley_A03_Hangman</string>
-    <string name="action_settings">Settings</string>
+    <!-- Global -->
+    <string name="app_name">Hangman!</string>
+
+    <!-- Main Menu -->
+    <string name="action_options">Options</string>
+    <string name="action_about">About</string>
+    <string name="button_play">Start Game</string>
 </resources>
