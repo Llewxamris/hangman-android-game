@@ -17,4 +17,9 @@
     <string name="label_maximum_letters">Maximum Word Length:</string>
     <string name="button_save">Save</string>
     <string name="button_cancel">Cancel</string>
+    <string name="error_required_minLength">Please enter a minimum length.</string>
+    <string name="error_required_maxLength">Please enter a maximum length.</string>
+    <string name="error_range_minLength">Minimum word length must be 3, or greater.</string>
+    <string name="error_range_maxLength">Maximum word length must be greater than or equal to minimum word length.</string>
+    <string name="options_success">Options Saved</string>
 </resources>

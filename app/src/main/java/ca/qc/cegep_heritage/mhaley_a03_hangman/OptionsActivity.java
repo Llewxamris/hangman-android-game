@@ -41,7 +41,7 @@ public class OptionsActivity extends AppCompatActivity {
 
                 if (edtxtMinLength.getText().toString().equals(""))
                 {
-                    warningBuilder.setMessage("Please enter a minimum length.");
+                    warningBuilder.setMessage(R.string.error_required_minLength);
                     warningBuilder.show();
                     return;
                 }
@@ -49,7 +49,7 @@ public class OptionsActivity extends AppCompatActivity {
 
                 if (edtxtMaxLength.getText().toString().equals(""))
                 {
-                    warningBuilder.setMessage("Please enter a maximum length.");
+                    warningBuilder.setMessage(R.string.error_required_maxLength);
                     warningBuilder.show();
 
                     return;
@@ -59,14 +59,14 @@ public class OptionsActivity extends AppCompatActivity {
                 int maxLength = Integer.parseInt(edtxtMaxLength.getText().toString());
 
                 if (minLength < MIN_WORD_LENGTH) {
-                    warningBuilder.setMessage("Minimum word length must be 3, or greater.");
+                    warningBuilder.setMessage(R.string.error_range_minLength);
                     warningBuilder.show();
                 } else if (maxLength < minLength ) {
-                    warningBuilder.setMessage("Maximum word length must be greater than or equal to minimum word length.");
+                    warningBuilder.setMessage(R.string.error_range_maxLength);
                     warningBuilder.show();
                 } else {
                     Snackbar saveSnackbar = Snackbar
-                            .make(findViewById(R.id.layOptions), "Options Saved", Snackbar.LENGTH_LONG);
+                            .make(findViewById(R.id.layOptions), R.string.options_success, Snackbar.LENGTH_LONG);
                     saveSnackbar.show();
                     setSharedPreferences();
                 }
