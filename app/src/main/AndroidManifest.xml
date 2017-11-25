@@ -21,8 +21,9 @@
         </activity>
         <activity
             android:name=".OptionsActivity"
-            android:label="@string/options_title"
-            android:configChanges="orientation|keyboardHidden"/>
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/options_title" />
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>
