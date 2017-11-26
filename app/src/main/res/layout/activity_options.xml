@@ -2,18 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layOptions"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layOptions"
     tools:context="ca.qc.cegep_heritage.mhaley_a03_hangman.OptionsActivity">
 
     <RadioGroup
         android:id="@+id/rdoGrpDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintStart_toEndOf="@+id/txtDifficulty"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
@@ -40,8 +40,8 @@
         android:id="@+id/txtDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/options_label_marginStart"
-        android:layout_marginTop="@dimen/options_label_marginTop"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
         android:text="@string/label_difficulty"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,11 +51,11 @@
         android:id="@+id/txtMinLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/options_label_marginStart"
-        android:layout_marginTop="@dimen/options_label_marginTop"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="72dp"
+        android:labelFor="@id/edtxtMinLength"
         android:text="@string/label_minimum_letters"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        android:labelFor="@id/edtxtMinLength"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDifficulty" />
 
@@ -64,8 +64,8 @@
         style="@android:style/Widget.Material.EditText"
         android:layout_width="@dimen/options_editText_width"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="40dp"
         android:ems="2"
         android:inputType="number"
         android:maxLength="2"
@@ -77,8 +77,8 @@
         android:id="@+id/txtMaxLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/options_label_marginStart"
-        android:layout_marginTop="@dimen/options_label_marginTop"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
         android:text="@string/label_maximum_letters"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,8 +89,8 @@
         style="@android:style/Widget.Material.EditText"
         android:layout_width="@dimen/options_editText_width"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
         android:ems="2"
         android:inputType="number"
         android:maxLength="2"
@@ -101,26 +101,26 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginBottom="212dp"
+        android:layout_marginStart="168dp"
         android:text="@string/button_save"
         android:textAllCaps="true"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMaxLength" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnCancel"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginBottom="212dp"
+        android:layout_marginStart="20dp"
         android:text="@string/button_cancel"
         android:textAllCaps="true"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintStart_toEndOf="@+id/btnSave"
-        app:layout_constraintTop_toBottomOf="@+id/txtMaxLength" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSave" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -18,6 +18,7 @@ public class OptionsActivity extends AppCompatActivity {
     private EditText edtxtMaxLength;
     private RadioGroup rdoGrpDifficulty;
     private Intent mainIntent;
+    private Button btnSave;
     private static final int MIN_WORD_LENGTH = 3;
 
     @Override
@@ -28,11 +29,12 @@ public class OptionsActivity extends AppCompatActivity {
         edtxtMinLength =  findViewById(R.id.edtxtMinLength);
         edtxtMaxLength = findViewById(R.id.edtxtMaxLength);
         rdoGrpDifficulty = findViewById(R.id.rdoGrpDifficulty);
+        btnSave = findViewById(R.id.btnSave);
         mainIntent = new Intent(OptionsActivity.this, MainActivity.class);
 
         getSharedPreferences();
 
-        Button btnSave = findViewById(R.id.btnSave);
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
