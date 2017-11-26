@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -22,16 +20,30 @@ public class GameActivity extends AppCompatActivity {
     private Word word;
     private LinkedList<Character> guessedLetters = new LinkedList<>();
     private LinkedList<Pair> correctLetters = new LinkedList<>();
+    private int wrongAnswers = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        final TextView hangmanHead = findViewById(R.id.drawHead);
+        final TextView hangmanBody = findViewById(R.id.drawBody);
+        final TextView hangmanLeftArm = findViewById(R.id.drawLeftArm);
+        final TextView hangmanLeftLeg = findViewById(R.id.drawLeftLeg);
+        final TextView hangmanRightArm = findViewById(R.id.drawRightArm);
+        final TextView hangmanRightLeg = findViewById(R.id.drawRightLeg);
+
+        hangmanHead.setVisibility(View.INVISIBLE);
+        hangmanBody.setVisibility(View.INVISIBLE);
+        hangmanLeftArm.setVisibility(View.INVISIBLE);
+        hangmanLeftLeg.setVisibility(View.INVISIBLE);
+        hangmanRightArm.setVisibility(View.INVISIBLE);
+        hangmanRightLeg.setVisibility(View.INVISIBLE);
+
         SharedPreferences sharedPreferences = getSharedPreferences("options", Context.MODE_PRIVATE);
 
         edtxtGuess = findViewById(R.id.edtxtGuess);
-
 
         try {
             word = WordFactory.getWord(sharedPreferences.getInt("minLength", 3),
@@ -70,7 +82,7 @@ public class GameActivity extends AppCompatActivity {
                     test = Toast.makeText(GameActivity.this, "You guessed a letter!", Toast.LENGTH_LONG);
                     Integer[] indexes = word.getLocationsOfLetter(guessedLetter.charAt(0));
 
-                    for (int index: indexes) {
+                    for (int index : indexes) {
                         Pair<Integer, Character> letterLocation = new Pair<>(index, guessedLetter.charAt(0));
                         correctLetters.add(letterLocation);
                     }
@@ -95,6 +107,31 @@ public class GameActivity extends AppCompatActivity {
                     txtWord.setText(sb.toString());
                     test.show();
                 } else {
+                    wrongAnswers++;
+
+                    switch (wrongAnswers) {
+                        case 1:
+                            hangmanHead.setVisibility(View.VISIBLE);
+                            break;
+                        case 2:
+                            hangmanBody.setVisibility(View.VISIBLE);
+                            break;
+                        case 3:
+                            hangmanLeftArm.setVisibility(View.VISIBLE);
+                            break;
+                        case 4:
+                            hangmanRightArm.setVisibility(View.VISIBLE);
+                            break;
+                        case 5:
+                            hangmanLeftLeg.setVisibility(View.VISIBLE);
+                            break;
+                        case 6:
+                            hangmanRightLeg.setVisibility(View.VISIBLE);
+                            break;
+                        default:
+                            break;
+                    }
+
                     test = Toast.makeText(GameActivity.this, "You didn't guess a letter!", Toast.LENGTH_LONG);
                     test.show();
                 }
