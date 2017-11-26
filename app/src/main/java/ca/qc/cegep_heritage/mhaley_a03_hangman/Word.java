@@ -5,7 +5,7 @@ public class Word {
     private String word;
     private int length;
 
-    public Word(String word) {
+    Word(String word) {
         this.word = word;
         length = word.length();
     }
@@ -14,11 +14,11 @@ public class Word {
         return word;
     }
 
-    public int getLength() {
+    int getLength() {
         return length;
     }
 
-    private boolean isLetterInWord(CharSequence letter) {
+    boolean isLetterInWord(CharSequence letter) {
         return word.contains(letter);
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -24,6 +25,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         SharedPreferences sharedPreferences = getSharedPreferences("options", Context.MODE_PRIVATE);
+        edtxtGuess = findViewById(R.id.edtxtGuess);
 
         try {
             word = WordFactory.getWord(sharedPreferences.getInt("minLength", 3),
@@ -34,9 +36,31 @@ public class GameActivity extends AppCompatActivity {
         }
 
         TextView txtWord = findViewById(R.id.txtTheWord);
-        txtWord.setText(word.getWord());
+        StringBuilder emptyWord = new StringBuilder();
 
-        edtxtGuess = findViewById(R.id.edtxtGuess);
+        for (int i = 0; i < word.getLength(); i++) {
+            emptyWord.append("_");
+            emptyWord.append(" ");
+        }
+
+        txtWord.setText(emptyWord.toString());
+
+        Button btnGuess = findViewById(R.id.btnGuess);
+        btnGuess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast test;
+                CharSequence guessedLetter = edtxtGuess.getText().toString().toLowerCase();
+
+                if (word.isLetterInWord(guessedLetter)) {
+                    test = Toast.makeText(GameActivity.this, "You guessed a letter!", Toast.LENGTH_LONG);
+                    test.show();
+                } else {
+                    test = Toast.makeText(GameActivity.this, "You didn't guess a letter!", Toast.LENGTH_LONG);
+                    test.show();
+                }
+            }
+        });
     }
 
     public void checkLetter(View v) {
