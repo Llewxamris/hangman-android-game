@@ -44,15 +44,16 @@ public class GameActivity extends AppCompatActivity {
         hangmanRightArm.setVisibility(View.INVISIBLE);
         hangmanRightLeg.setVisibility(View.INVISIBLE);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("options", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(Options.OPTIONS, Context.MODE_PRIVATE);
 
         edtxtGuess = findViewById(R.id.edtxtGuess);
         txtWord = findViewById(R.id.txtTheWord);
 
         try {
-            word = WordFactory.getWord(sharedPreferences.getInt("minLength", 3),
-                    sharedPreferences.getInt("maxLength", 13),
-                    sharedPreferences.getInt("difficulty", 0) == R.id.rdoEasy ? 0 : 1);
+            word = WordFactory.getWord(sharedPreferences.getInt(Options.MIN_LENGTH, 3),
+                    sharedPreferences.getInt(Options.MAX_LENGTH, 13),
+                    sharedPreferences.getInt(Options.DIFFICULTY, 0) ==
+                            OptionsActivity.getEasyRadioButtonId() ? 0 : 1);
         } catch (IOException e) {
             e.printStackTrace();
         }

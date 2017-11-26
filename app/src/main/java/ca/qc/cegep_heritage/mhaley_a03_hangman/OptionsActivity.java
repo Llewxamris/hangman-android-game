@@ -88,35 +88,39 @@ public class OptionsActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
-        savedInstanceState.putString("minLength", edtxtMinLength.getText().toString());
-        savedInstanceState.putString("maxLength", edtxtMaxLength.getText().toString());
-        savedInstanceState.putInt("selectedDifficulty", rdoGrpDifficulty.getCheckedRadioButtonId());
+        savedInstanceState.putString(Options.MIN_LENGTH, edtxtMinLength.getText().toString());
+        savedInstanceState.putString(Options.MAX_LENGTH, edtxtMaxLength.getText().toString());
+        savedInstanceState.putInt(Options.DIFFICULTY, rdoGrpDifficulty.getCheckedRadioButtonId());
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        edtxtMinLength.setText(savedInstanceState.getString("minLength"));
-        edtxtMaxLength.setText(savedInstanceState.getString("maxLength"));
-        rdoGrpDifficulty.check(savedInstanceState.getInt("selectedDifficulty"));
+        edtxtMinLength.setText(savedInstanceState.getString(Options.MIN_LENGTH));
+        edtxtMaxLength.setText(savedInstanceState.getString(Options.MAX_LENGTH));
+        rdoGrpDifficulty.check(savedInstanceState.getInt(Options.DIFFICULTY));
     }
 
     private void getSharedPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences("options", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(Options.OPTIONS, Context.MODE_PRIVATE);
 
-        edtxtMinLength.setText(String.valueOf(sharedPreferences.getInt("minLength", 3)));
-        edtxtMaxLength.setText(String.valueOf(sharedPreferences.getInt("maxLength", 13)));
-        rdoGrpDifficulty.check(sharedPreferences.getInt("difficulty", R.id.rdoEasy));
+        edtxtMinLength.setText(String.valueOf(sharedPreferences.getInt(Options.MIN_LENGTH, 3)));
+        edtxtMaxLength.setText(String.valueOf(sharedPreferences.getInt(Options.MAX_LENGTH, 13)));
+        rdoGrpDifficulty.check(sharedPreferences.getInt(Options.DIFFICULTY, R.id.rdoEasy));
+    }
+
+    protected static int getEasyRadioButtonId() {
+        return R.id.rdoEasy;
     }
 
     private void setSharedPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences("options", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(Options.OPTIONS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editSharedPrefs = sharedPreferences.edit();
 
-        editSharedPrefs.putInt("minLength", Integer.parseInt(edtxtMinLength.getText().toString()));
-        editSharedPrefs.putInt("maxLength", Integer.parseInt(edtxtMaxLength.getText().toString()));
-        editSharedPrefs.putInt("difficulty", rdoGrpDifficulty.getCheckedRadioButtonId());
+        editSharedPrefs.putInt(Options.MIN_LENGTH, Integer.parseInt(edtxtMinLength.getText().toString()));
+        editSharedPrefs.putInt(Options.MAX_LENGTH, Integer.parseInt(edtxtMaxLength.getText().toString()));
+        editSharedPrefs.putInt(Options.DIFFICULTY, rdoGrpDifficulty.getCheckedRadioButtonId());
         editSharedPrefs.apply();
     }
 }
