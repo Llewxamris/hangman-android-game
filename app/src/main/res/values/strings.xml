@@ -1,6 +1,7 @@
 <resources>
     <!-- Global -->
     <string name="app_name">Hangman!</string>
+    <string name="subtitle">Guess the word, save the man!</string>
 
     <!-- Main Menu -->
     <string name="action_options">Options</string>
