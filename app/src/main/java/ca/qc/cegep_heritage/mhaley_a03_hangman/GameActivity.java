@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import java.util.LinkedList;
 public class GameActivity extends AppCompatActivity {
 
     private EditText edtxtGuess;
+    private TextView txtWord;
     private Word word;
     private LinkedList<Character> guessedLetters = new LinkedList<>();
     private LinkedList<Pair> correctLetters = new LinkedList<>();
@@ -44,6 +46,7 @@ public class GameActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("options", Context.MODE_PRIVATE);
 
         edtxtGuess = findViewById(R.id.edtxtGuess);
+        txtWord = findViewById(R.id.txtTheWord);
 
         try {
             word = WordFactory.getWord(sharedPreferences.getInt("minLength", 3),
@@ -53,7 +56,6 @@ public class GameActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        final TextView txtWord = findViewById(R.id.txtTheWord);
         StringBuilder emptyWord = new StringBuilder();
 
         for (int i = 0; i < word.getLength(); i++) {
@@ -70,6 +72,13 @@ public class GameActivity extends AppCompatActivity {
                 Toast test;
                 CharSequence guessedLetter = edtxtGuess.getText().toString().toLowerCase();
 
+                edtxtGuess.clearFocus();
+
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+
                 if (guessedLetters.contains(guessedLetter.toString().charAt(0))) {
                     test = Toast.makeText(GameActivity.this, "Duplicate letter!", Toast.LENGTH_LONG);
                     test.show();
@@ -79,7 +88,6 @@ public class GameActivity extends AppCompatActivity {
                 guessedLetters.add(guessedLetter.toString().charAt(0));
 
                 if (word.isLetterInWord(guessedLetter)) {
-                    test = Toast.makeText(GameActivity.this, "You guessed a letter!", Toast.LENGTH_LONG);
                     Integer[] indexes = word.getLocationsOfLetter(guessedLetter.charAt(0));
 
                     for (int index : indexes) {
@@ -105,7 +113,6 @@ public class GameActivity extends AppCompatActivity {
                     }
 
                     txtWord.setText(sb.toString());
-                    test.show();
                 } else {
                     wrongAnswers++;
 
@@ -131,18 +138,10 @@ public class GameActivity extends AppCompatActivity {
                         default:
                             break;
                     }
-
-                    test = Toast.makeText(GameActivity.this, "You didn't guess a letter!", Toast.LENGTH_LONG);
-                    test.show();
                 }
+                edtxtGuess.setText("");
             }
         });
-    }
-
-    public void checkLetter(View v) {
-        Button btn = findViewById(v.getId());
-        btn.setClickable(false);
-        btn.setEnabled(false);
     }
 
     @Override
@@ -150,12 +149,44 @@ public class GameActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
 
         savedInstanceState.putString("guess", edtxtGuess.getText().toString());
+        savedInstanceState.putString("word", txtWord.getText().toString());
+        savedInstanceState.putParcelable("word", word);
+        savedInstanceState.putSerializable("guessedLetters", guessedLetters);
+        savedInstanceState.putSerializable("correctLetters", correctLetters);
+        savedInstanceState.putInt("wrongAnswers", wrongAnswers);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
         edtxtGuess.setText(savedInstanceState.getString("guess"));
+        word = savedInstanceState.getParcelable("word");
+        txtWord.setText(savedInstanceState.getString("word"));
+        guessedLetters = (LinkedList<Character>) savedInstanceState.getSerializable("guessedLetters");
+        correctLetters = (LinkedList<Pair>) savedInstanceState.getSerializable("correctLetters");
+        wrongAnswers = savedInstanceState.getInt("wrongAnswers");
+
+        TextView hangmanHead = findViewById(R.id.drawHead);
+        TextView hangmanBody = findViewById(R.id.drawBody);
+        TextView hangmanLeftArm = findViewById(R.id.drawLeftArm);
+        TextView hangmanLeftLeg = findViewById(R.id.drawLeftLeg);
+        TextView hangmanRightArm = findViewById(R.id.drawRightArm);
+
+        switch (wrongAnswers) {
+            case 5:
+                hangmanLeftLeg.setVisibility(View.VISIBLE);
+            case 4:
+                hangmanRightArm.setVisibility(View.VISIBLE);
+            case 3:
+                hangmanLeftArm.setVisibility(View.VISIBLE);
+            case 2:
+                hangmanBody.setVisibility(View.VISIBLE);
+            case 1:
+                hangmanHead.setVisibility(View.VISIBLE);
+            default:
+                break;
+        }
     }
 
 }

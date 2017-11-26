@@ -1,8 +1,11 @@
 package ca.qc.cegep_heritage.mhaley_a03_hangman;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.LinkedList;
 
-public class Word {
+public class Word implements Parcelable {
 
     private String word;
     private int length;
@@ -10,6 +13,11 @@ public class Word {
     Word(String word) {
         this.word = word;
         length = word.length();
+    }
+
+    private Word(Parcel in) {
+        word = in.readString();
+        length = in.readInt();
     }
 
     public String getWord() {
@@ -57,4 +65,26 @@ public class Word {
 
         return findIndexesOf(letter, indexes, wordSegment.substring(++index), lastIndex + index);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(word);
+        out.writeInt(length);
+    }
+
+    public static final Parcelable.Creator<Word> CREATOR = new Parcelable.Creator<Word>() {
+        public Word createFromParcel(Parcel in) {
+            return new Word(in);
+        }
+
+        public Word[] newArray(int size) {
+            return new Word[size];
+        }
+    };
+
 }
