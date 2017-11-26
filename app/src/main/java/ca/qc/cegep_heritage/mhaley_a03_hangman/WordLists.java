@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class WordLists {
+class WordLists {
     private static String[] easyList = null;
 
     private static String[] hardList = null;
