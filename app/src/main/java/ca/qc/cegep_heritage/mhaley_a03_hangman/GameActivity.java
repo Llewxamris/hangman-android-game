@@ -4,20 +4,24 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class GameActivity extends AppCompatActivity {
 
     private EditText edtxtGuess;
     private Word word;
+    private LinkedList<Character> guessedLetters = new LinkedList<>();
+    private LinkedList<Pair> correctLetters = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +29,9 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         SharedPreferences sharedPreferences = getSharedPreferences("options", Context.MODE_PRIVATE);
+
         edtxtGuess = findViewById(R.id.edtxtGuess);
+
 
         try {
             word = WordFactory.getWord(sharedPreferences.getInt("minLength", 3),
@@ -35,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        TextView txtWord = findViewById(R.id.txtTheWord);
+        final TextView txtWord = findViewById(R.id.txtTheWord);
         StringBuilder emptyWord = new StringBuilder();
 
         for (int i = 0; i < word.getLength(); i++) {
@@ -52,8 +58,41 @@ public class GameActivity extends AppCompatActivity {
                 Toast test;
                 CharSequence guessedLetter = edtxtGuess.getText().toString().toLowerCase();
 
+                if (guessedLetters.contains(guessedLetter.toString().charAt(0))) {
+                    test = Toast.makeText(GameActivity.this, "Duplicate letter!", Toast.LENGTH_LONG);
+                    test.show();
+                    return;
+                }
+
+                guessedLetters.add(guessedLetter.toString().charAt(0));
+
                 if (word.isLetterInWord(guessedLetter)) {
                     test = Toast.makeText(GameActivity.this, "You guessed a letter!", Toast.LENGTH_LONG);
+                    Integer[] indexes = word.getLocationsOfLetter(guessedLetter.charAt(0));
+
+                    for (int index: indexes) {
+                        Pair<Integer, Character> letterLocation = new Pair<>(index, guessedLetter.charAt(0));
+                        correctLetters.add(letterLocation);
+                    }
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < word.getLength(); i++) {
+                        boolean isFound = false;
+
+                        for (Pair letterLocal : correctLetters) {
+                            if ((Integer) letterLocal.first == i) {
+                                sb.append(letterLocal.second);
+                                sb.append(" ");
+                                isFound = true;
+                            }
+                        }
+
+                        if (!isFound) {
+                            sb.append("_ ");
+                        }
+                    }
+
+                    txtWord.setText(sb.toString());
                     test.show();
                 } else {
                     test = Toast.makeText(GameActivity.this, "You didn't guess a letter!", Toast.LENGTH_LONG);
