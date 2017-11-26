@@ -164,7 +164,7 @@ public class GameActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
 
         savedInstanceState.putString("guess", edtxtGuess.getText().toString());
-        savedInstanceState.putString("word", txtWord.getText().toString());
+        savedInstanceState.putString("displayWord", txtWord.getText().toString());
         savedInstanceState.putParcelable("word", word);
         savedInstanceState.putSerializable("guessedLetters", guessedLetters);
         savedInstanceState.putSerializable("correctLetters", correctLetters);
@@ -177,7 +177,7 @@ public class GameActivity extends AppCompatActivity {
 
         edtxtGuess.setText(savedInstanceState.getString("guess"));
         word = savedInstanceState.getParcelable("word");
-        txtWord.setText(savedInstanceState.getString("word"));
+        txtWord.setText(savedInstanceState.getString("displayWord"));
         guessedLetters = (LinkedList<Character>) savedInstanceState.getSerializable("guessedLetters");
         correctLetters = (LinkedList<Pair>) savedInstanceState.getSerializable("correctLetters");
 
