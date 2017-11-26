@@ -1,6 +1,7 @@
 package ca.qc.cegep_heritage.mhaley_a03_hangman;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -74,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
 
                 edtxtGuess.clearFocus();
 
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -113,6 +114,12 @@ public class GameActivity extends AppCompatActivity {
                     }
 
                     txtWord.setText(sb.toString());
+
+                    if (correctLetters.size() == word.getLength()) {
+                        correctLetters = null;
+                        Intent winner = new Intent(GameActivity.this, WinActivity.class);
+                        startActivity(winner);
+                    }
                 } else {
                     wrongAnswers++;
 
@@ -139,7 +146,15 @@ public class GameActivity extends AppCompatActivity {
                             break;
                     }
                 }
+
                 edtxtGuess.setText("");
+
+                if (wrongAnswers == 6) {
+                    correctLetters = null;
+                    Intent gameOver = new Intent(GameActivity.this, LoseActivity.class);
+                    gameOver.putExtra("actualWord", word.getWord());
+                    startActivity(gameOver);
+                }
             }
         });
     }
@@ -165,6 +180,7 @@ public class GameActivity extends AppCompatActivity {
         txtWord.setText(savedInstanceState.getString("word"));
         guessedLetters = (LinkedList<Character>) savedInstanceState.getSerializable("guessedLetters");
         correctLetters = (LinkedList<Pair>) savedInstanceState.getSerializable("correctLetters");
+
         wrongAnswers = savedInstanceState.getInt("wrongAnswers");
 
         TextView hangmanHead = findViewById(R.id.drawHead);
