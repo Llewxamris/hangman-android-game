@@ -2,5 +2,6 @@
     <dimen name="options_label_marginStart">40dp</dimen>
     <dimen name="options_label_marginTop">60dp</dimen>
     <dimen name="options_editText_width">67dp</dimen>
+    <dimen name="about_textView_marginTop">16dp</dimen>
     <dimen name="game_land_hangman_scale">1</dimen>
 </resources>

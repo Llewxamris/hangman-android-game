@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.qc.cegep_heritage.mhaley_a03_hangman.AboutActivity">
+    tools:context="ca.qc.cegep_heritage.mhaley_a03_hangman.AboutActivity"
+    tools:layout_editor_absoluteY="73dp">
 
     <TextView
         android:id="@+id/txtGameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/app_name"
         android:textAppearance="@android:style/TextAppearance.Material.Display3"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,54 +22,58 @@
         android:id="@+id/txtCompleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:text="2017/11/26"
+        android:text="@string/date_created"
         android:textAppearance="@android:style/TextAppearance.Material.Display2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAuthorName" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtAuthorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Maxwell Haley"
+        android:text="@string/author_name"
         android:textAppearance="@android:style/TextAppearance.Material.Display2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVersionNo2" />
+        app:layout_constraintBottom_toTopOf="@+id/txtCompleted"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtVersionNo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="117dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="16dp"
-        android:text="v1.0.0"
+        android:layout_marginTop="15dp"
+        android:text="@string/version_number"
         android:textAppearance="@android:style/TextAppearance.Material.Display2"
+        app:layout_constraintEnd_toStartOf="@+id/txtDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGameTitle" />
 
     <TextView
         android:id="@+id/txtDescription"
-        android:layout_width="346dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginTop="60dp"
-        android:text="A game of Hangman for Android. Written for 420-B51 (Programming V). "
+        android:text="@string/descriptions"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Body2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtVersionNo2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="156dp"
-        android:layout_marginTop="32dp"
-        android:text="now/then"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="44dp"
+        android:layout_marginTop="28dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/txtDescription"
         app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@
     <!-- Global -->
     <string name="app_name">Hangman!</string>
     <string name="subtitle">Guess the word, save the man!</string>
+    <string name="version_number">v1.0.0</string>
 
     <!-- Main Menu -->
     <string name="action_options">Options</string>
@@ -23,6 +24,11 @@
     <string name="error_range_minLength">Minimum word length must be 3, or greater.</string>
     <string name="error_range_maxLength">Maximum word length must be greater than or equal to minimum word length.</string>
     <string name="options_success">Options Saved</string>
+
+    <!-- About -->
+    <string name="author_name">Maxwell Haley</string>
+    <string name="date_created">2017/11/26</string>
+    <string name="descriptions">A game of Hangman for Android. Guess the letters in the word, but fail six times, and the hangman gets it! Written for 420-B51 (Programming V).</string>
 
     <!-- Game -->
     <string name="button_onclick">checkForLetter</string>

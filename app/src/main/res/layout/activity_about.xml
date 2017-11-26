@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.qc.cegep_heritage.mhaley_a03_hangman.AboutActivity">
+    tools:context="ca.qc.cegep_heritage.mhaley_a03_hangman.AboutActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/txtGameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/about_textView_marginTop"
         android:text="@string/app_name"
         android:textAppearance="@android:style/TextAppearance.Material.Display3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,21 +22,21 @@
         android:id="@+id/txtCompleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="4dp"
-        android:text="2017/11/26"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/about_textView_marginTop"
+        android:text="@string/date_created"
         android:textAppearance="@android:style/TextAppearance.Material.Display2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtAuthorName"
         app:layout_constraintTop_toBottomOf="@+id/txtAuthorName" />
 
     <TextView
         android:id="@+id/txtAuthorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
-        android:text="Maxwell Haley"
+        android:layout_marginTop="@dimen/about_textView_marginTop"
+        android:text="@string/author_name"
         android:textAppearance="@android:style/TextAppearance.Material.Display2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVersionNo2" />
 
@@ -43,10 +44,10 @@
         android:id="@+id/txtVersionNo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="16dp"
-        android:text="v1.0.0"
+        android:layout_marginTop="@dimen/about_textView_marginTop"
+        android:text="@string/version_number"
         android:textAppearance="@android:style/TextAppearance.Material.Display2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGameTitle" />
 
@@ -54,8 +55,8 @@
         android:id="@+id/txtDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="A game of Hangman for Android. Written for 420-B51 (Programming V). "
+        android:layout_marginTop="@dimen/about_textView_marginTop"
+        android:text="@string/descriptions"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Body2"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +66,9 @@
         android:id="@+id/txtDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="now/then"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="568dp" />
+        android:layout_marginBottom="16dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
