@@ -80,6 +80,12 @@ public class GameActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
 
+                if (guessedLetter.equals("")) {
+                    test = Toast.makeText(GameActivity.this, "Enter a letter!", Toast.LENGTH_LONG);
+                    test.show();
+                    return;
+                }
+
                 if (guessedLetters.contains(guessedLetter.toString().charAt(0))) {
                     test = Toast.makeText(GameActivity.this, "Duplicate letter!", Toast.LENGTH_LONG);
                     test.show();
