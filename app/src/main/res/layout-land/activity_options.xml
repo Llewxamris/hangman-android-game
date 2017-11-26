@@ -12,10 +12,10 @@
         android:id="@+id/rdoGrpDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/txtDifficulty"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="31dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtxtMinLength"
+        app:layout_constraintStart_toEndOf="@+id/txtMinLength">
 
         <RadioButton
             android:id="@+id/rdoEasy"
@@ -52,76 +52,81 @@
         android:id="@+id/txtMinLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="56dp"
         android:labelFor="@id/edtxtMinLength"
         android:text="@string/label_minimum_letters"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDifficulty" />
+        app:layout_constraintBottom_toBottomOf="@+id/edtxtMinLength"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edtxtMinLength"
         style="@android:style/Widget.Material.EditText"
-        android:layout_width="@dimen/options_editText_width"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="23dp"
         android:ems="2"
         android:inputType="number"
         android:maxLength="2"
-        app:layout_constraintStart_toEndOf="@+id/txtMinLength"
-        app:layout_constraintTop_toBottomOf="@+id/rdoGrpDifficulty" />
+        app:layout_constraintBottom_toTopOf="@+id/edtxtMaxLength"
+        app:layout_constraintEnd_toEndOf="@+id/rdoGrpDifficulty"
+        app:layout_constraintStart_toEndOf="@+id/txtMaxLength" />
 
 
     <TextView
         android:id="@+id/txtMaxLength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
         android:text="@string/label_maximum_letters"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMinLength" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/edtxtMaxLength"
+        app:layout_constraintEnd_toStartOf="@+id/edtxtMaxLength"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edtxtMaxLength"
         style="@android:style/Widget.Material.EditText"
-        android:layout_width="@dimen/options_editText_width"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="38dp"
         android:ems="2"
         android:inputType="number"
         android:labelFor="@id/edtxtMaxLength"
         android:maxLength="2"
-        app:layout_constraintStart_toEndOf="@+id/txtMaxLength"
-        app:layout_constraintTop_toBottomOf="@+id/edtxtMinLength" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+        app:layout_constraintEnd_toStartOf="@+id/btnSave"
+        app:layout_constraintStart_toEndOf="@+id/txtMaxLength" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
         android:layout_marginEnd="48dp"
         android:text="@string/button_save"
         android:textAllCaps="true"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancel" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnCancel"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+        app:layout_constraintStart_toEndOf="@+id/edtxtMaxLength" />
 
     <Button
         android:id="@+id/btnCancel"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="73dp"
         android:layout_marginEnd="36dp"
         android:text="@string/button_cancel"
         android:textAllCaps="true"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSave" />
 
 </android.support.constraint.ConstraintLayout>
