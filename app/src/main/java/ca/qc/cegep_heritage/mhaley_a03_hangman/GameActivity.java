@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class GameActivity extends AppCompatActivity {
+    /* The actual game screen. All gameplay takes place inside this activity. */
 
     private EditText edtxtGuess;
     private TextView txtWord;
@@ -37,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
         final TextView hangmanRightArm = findViewById(R.id.drawRightArm);
         final TextView hangmanRightLeg = findViewById(R.id.drawRightLeg);
 
+        // Hide the hangman
         hangmanHead.setVisibility(View.INVISIBLE);
         hangmanBody.setVisibility(View.INVISIBLE);
         hangmanLeftArm.setVisibility(View.INVISIBLE);
@@ -49,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
         edtxtGuess = findViewById(R.id.edtxtGuess);
         txtWord = findViewById(R.id.txtTheWord);
 
+        // Get a new word, and catch an IOException if there's an error reading the files
         try {
             word = WordFactory.getWord(sharedPreferences.getInt(Options.MIN_LENGTH, 3),
                     sharedPreferences.getInt(Options.MAX_LENGTH, 13),
@@ -60,6 +63,7 @@ public class GameActivity extends AppCompatActivity {
 
         StringBuilder emptyWord = new StringBuilder();
 
+        // Build the "placeholder" word
         for (int i = 0; i < word.getLength(); i++) {
             emptyWord.append("_");
             emptyWord.append(" ");
@@ -74,19 +78,21 @@ public class GameActivity extends AppCompatActivity {
                 Toast test;
                 CharSequence guessedLetter = edtxtGuess.getText().toString().toLowerCase();
 
+                // Take focus away from the input
                 edtxtGuess.clearFocus();
-
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
 
+                // Check for empty input
                 if (guessedLetter.equals("")) {
                     test = Toast.makeText(GameActivity.this, "Enter a letter!", Toast.LENGTH_LONG);
                     test.show();
                     return;
                 }
 
+                // Check for duplicate input
                 if (guessedLetters.contains(guessedLetter.toString().charAt(0))) {
                     test = Toast.makeText(GameActivity.this, "Duplicate letter!", Toast.LENGTH_LONG);
                     test.show();
@@ -96,6 +102,7 @@ public class GameActivity extends AppCompatActivity {
                 guessedLetters.add(guessedLetter.toString().charAt(0));
 
                 if (word.isLetterInWord(guessedLetter)) {
+                    // The following runs if the input char is inside the word string
                     Integer[] indexes = word.getLocationsOfLetter(guessedLetter.charAt(0));
 
                     for (int index : indexes) {
@@ -122,12 +129,14 @@ public class GameActivity extends AppCompatActivity {
 
                     txtWord.setText(sb.toString());
 
+                    // Win condition
                     if (correctLetters.size() == word.getLength()) {
                         correctLetters = null;
                         Intent winner = new Intent(GameActivity.this, WinActivity.class);
                         startActivity(winner);
                     }
                 } else {
+                    // The following runs if the input was not inside the word string
                     wrongAnswers++;
 
                     switch (wrongAnswers) {
@@ -156,6 +165,7 @@ public class GameActivity extends AppCompatActivity {
 
                 edtxtGuess.setText("");
 
+                // Lose condition
                 if (wrongAnswers == 6) {
                     correctLetters = null;
                     Intent gameOver = new Intent(GameActivity.this, LoseActivity.class);
@@ -164,7 +174,7 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+    } // onCreate(...)
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -176,7 +186,7 @@ public class GameActivity extends AppCompatActivity {
         savedInstanceState.putSerializable("guessedLetters", guessedLetters);
         savedInstanceState.putSerializable("correctLetters", correctLetters);
         savedInstanceState.putInt("wrongAnswers", wrongAnswers);
-    }
+    } // onSaveInstanceState(...)
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -210,6 +220,6 @@ public class GameActivity extends AppCompatActivity {
             default:
                 break;
         }
-    }
+    } // onRestoreInstanceState
 
 }
