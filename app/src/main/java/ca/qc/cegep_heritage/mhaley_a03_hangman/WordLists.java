@@ -8,18 +8,19 @@ import java.io.InputStreamReader;
 
 
 class WordLists {
+    /* Singleton class that contains to lazy-loading lists of words. These words are pulled from two
+    text files included inside the assets folder. */
     private static String[] easyList = null;
-
     private static String[] hardList = null;
 
-    private static String[] list;
+    private static final String EASY_FILE = "hangwords_easy.txt";
+    private static final String HARD_FILE = "hangwords_hard.txt";
 
     static String[] getEasyList() throws IOException {
-
         if (easyList == null) {
             AssetManager assetManager = AssetsGrabber.getAssetManager();
             BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(assetManager.open("hangwords_easy.txt")));
+                    new InputStreamReader(assetManager.open(EASY_FILE)));
 
             String line;
             StringBuilder fullList = new StringBuilder();
@@ -33,13 +34,13 @@ class WordLists {
         }
 
         return easyList;
-    }
+    } // getEasyList()
 
     static String[] getHardList() throws IOException {
         if (hardList == null) {
             AssetManager assetManager = AssetsGrabber.getAssetManager();
             BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(assetManager.open("hangwords_hard.txt")));
+                    new InputStreamReader(assetManager.open(HARD_FILE)));
 
             String line;
             StringBuilder fullList = new StringBuilder();
@@ -53,8 +54,7 @@ class WordLists {
         }
 
         return hardList;
-    }
+    } // getHardList()
 
-    private WordLists() {
-    }
-}
+    private WordLists() { }
+} // WordLists
